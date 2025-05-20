@@ -67,12 +67,8 @@
                greet-handler]
      :route-name :index]})
 
-(def port (or (some-> (System/getenv "PORT")
-                      parse-long)
-              8890))
-
 (defn create-connector []
-  (-> (conn/default-connector-map "0.0.0.0" port)
+  (-> (conn/default-connector-map "0.0.0.0" 8080)
       (conn/with-default-interceptors)
       (conn/with-routes routes)
       (hk/create-connector nil)))
